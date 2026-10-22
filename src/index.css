@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 17.5px;
+}
+
+html.font-scale-large {
+  font-size: 19.5px;
+}
+
+html.font-scale-xlarge {
+  font-size: 22px;
+}
+
+@layer utilities {
+  .font-serif-cert {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+/* Screen Blur Transition Effect */
+@keyframes screenBlurTransition {
+  0% {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    opacity: 0;
+  }
+  35% {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    opacity: 1;
+  }
+  70% {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    opacity: 0.8;
+  }
+  100% {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    opacity: 0;
+  }
+}
+
+.screen-blur-active {
+  animation: screenBlurTransition 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .certificate-print-container {
+    box-shadow: none !important;
+    border: 3px double #00324D !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 24px !important;
+    page-break-inside: avoid;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  @page {
+    size: landscape;
+    margin: 0.5cm;
+  }
+}
